@@ -1,0 +1,43 @@
+# Docker image and store Docker file
+1- install marking scipts
+$source <(gsutil cat gs://cloud-training/gsp318/marking/setup_marking.sh)
+2-to clone the valkyrie-app source code repository to the Cloud Shell
+$export PROJECT=$YOUR_PROJECT_ID
+$gcloud source repos clone valkyrie-app --project=$PROJECT --> $gcloud source repos clone valkyrie-app qwiklabs-gcp-00-f7d69cbd40fb
+# create docker file under valkyrie-app directory
+$cat > Dockerfile <<EOF
+> FROM golang:1.10
+> WORKDIR /go/src/app
+> COPY source .
+> RUN go install -v
+> ENTRYPOINT ["app","-single=true","-port=8080"]
+> EOF
+# Use valkyrie-app/Dockerfile to create a Docker image called valkyrie-app with the tag v0.0.1
+$docker build -t valkyrie-app:v0.0.1 .
+# run step1.sh to perform the local check of your work
+$ cd ~/marking
+./step1.sh
+# Test the created Docker image
+$ docker run -p 8080:8080 --name valkyrie-app valkyrie-app:v0.0.1 &
+$ cd ~/marking
+./step2.sh
+# push docker image in container repository
+$docker tag valkyrie-app:v0.0.1 gcr.io/$PROJECT/valkyrie-app:v0.0.1
+$docker images
+$docker push gcr.io/$PROJECT/valkyrie-app:v0.0.1
+
+#move to valkyrie-app/
+$gcloud container clusters get-credentials valkyrie-dev --region us-east1
+# use a text editor to modify deployment.yaml and replace IMAGE_HERE with gcr.io/YOUR_PROJECT_ID/valkyrie-app:v0.0.1
+$ vi deployment.yaml
+$ cd valkyrie-app/k8s
+$kubectl create -f service.yaml & deployment.yaml
+# update the deployment with a new version of valkyrie-app
+$ cd valkyrie-app
+$ git merge origin/kurt-dev
+# Build and push the new version with tagged v0.0.2:
+$docker build -t valkyrie-app:v0.0.2 .
+$docker tag valkyrie-app:v0.0.2 gcr.io/$PROJECT/valkyrie-app:v0.0.2
+$docker images
+$docker push gcr.io/$PROJECT/valkyrie-app:v0.0.2
+
