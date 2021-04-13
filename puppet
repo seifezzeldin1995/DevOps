@@ -1,0 +1,23 @@
+# puppet resource
+puppet is stateless as no state being kept between runs of agent
+'test and repair' means we should only take actions when testing determines they need to be done to reach requested state
+class timezone {
+      file { '/etc/timezone':
+      ensure => file,
+      content => "UTC\n",
+      replace => true,
+      }
+ }  
+ 
+# file resource
+To ensure that issue file has set of permissions and set of lines in it
+      file { '/etc/issue':
+      mode => '0644',
+      content => "Internal system \l \n",
+      }
+
+# to execute a file only if the file that we wants to move exists
+      exec { 'move example file':
+            command => 'mv /home/user/example.txt /home/user/Desktop' ,
+            onlyif => 'test -e /home/user/example.txt',
+            }
