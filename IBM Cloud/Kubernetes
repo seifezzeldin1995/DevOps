@@ -1,0 +1,50 @@
+# connect via CLI to cluster
+$ibmcloud ks cluster config --cluster <YOUR_CLUSTER_ID>
+# deploy application
+$ kubectl apply -f https://raw.githubusercontent.com/IBM/MAX-Object-Detector/master/max-object-detector.yaml
+# find public IP address 
+$ ibmcloud cs workers --cluster <YOUR_CLUSTER_ID>
+# find port the application running on
+$ kubectl describe service max-object-detector | grep NodePort
+#clean or remove kubernetes cluster
+$ ibmcloud cs cluster rm -c <YOUR_CLUSTER_ID> -f
+
+
+# cloud Foundry 
+1- clone repository
+$ git clone https://github.com/IBM/node-hello-world
+2- change directory
+$ cd node-hello-world
+# create organization
+$ibmcloud account org-create <your-email-address>
+# create space 
+$ ibmcloud account space-create dev_space -o <your-email-address>
+# target Cloud Foundry API endpoint
+$ ibmcloud target --cf
+$ibmcloud cf push
+# delete deployment
+$ ibmcloud cf delete node-hello-world-example -f -r
+
+# Cloudant Lab
+1- Create Cloudant instance
+2- Create database and name and non-partiotioned
+3- Create document
+
+{  
+ "_id": "76dfd029a1ef3f5342137b4f3ad9de61",
+ "employeeNum": "123",
+ "salary":"50"
+}
+4- Replicate 2 documents and view in table
+5-Cloudant query to find find all employees, with a salary greater than 48:
+{
+   "selector": {
+      "salary": {
+         "$gt": "48"
+      }
+   }
+}
+
+
+
+  
