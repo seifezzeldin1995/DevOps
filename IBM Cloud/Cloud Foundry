@@ -1,0 +1,44 @@
+# cloud Foundry Helps you deploy applications,decouples applications from infrastructure,Language- and framework-neutral.
+# IBM Cloud CLI is a general-purpose developer tool that provides access to an IBM Cloud account and services through a command-line interface (CLI).
+#Cloud Foundry commands are accessible by using ibmcloud cf.
+$ ibmcloud login
+# login email and password
+$ ibmcloud target --cf
+# to ease depoyment,we use "kubernetes deployment.js"
+# package provide metadata about application,run “npm install”, Node.js pulls dependencies from NPM and places them into “node_modules”
+# clone app 
+$ git clone https://github.com/IBM-Cloud/get-started-node
+# deploy Cloud Foundry apps on IBM Cloud, you need a manifest.yml file
+# The .cfignore file prevents cf push from uploading all the files and folders 
+$ run ibmcloud cf push
+# view details of app
+$ ibmcloud cf app GetStartedNode
+# To explore how your application directories are structured after they are deployed, use SSH to the deployed application by running the following command
+$ ibmcloud cf ssh GetStartedNode
+# orgs is  a level of abstraction to manage resources, such as service availability, quota plans, applications and custom domains
+# A space provides a shared location for multiple users to deploy multiple applications.Every space belongs to one org. Each org can have multiple spaces.
+# Any developer in a space can access and edit the configurations of an application.
+# A buildpack is a template and tools that help you resolve your runtime dependencies.
+# force and Push the application by running the following command
+$ ibmcloud cf push -b BUILDPACK_NAME
+# Dependencies are your runtime dependencies, that is, the programs and libraries that Node.js requires to run, [Detect, Supplies, finalize, Release]
+$ ibmcloud cf buildpacks
+# To use a custom buildpack, you can either:
+-Add the buildpack key into the application’s manifest.yml file
+-ibmcloud cf push APP_NAME -b https://github.com/cloudfoundry/java-buildpack.git
+-To configure the number of instances that you want in manifest.yml, specify the number of instances in the instances key.
+$ ibmcloud cf scale APP_NAME -i NUMBER_OF_INSTANCES
+# Cloud Foundry manages application orchestration across multiple availability zones and infrastructure.
+# If there are multiple instances of your application running, Cloud Foundry automatically load balances across instances.
+# The Cloud Foundry platform provides log aggregations. To view events and logs for the deployed application, run the following commands:
+$ ibmcloud cf events GetStartedNode
+$ ibmcloud cf logs GetStartedNode
+# setting routes 
+
+
+
+
+
+
+
+
