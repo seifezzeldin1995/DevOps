@@ -34,8 +34,63 @@ $ ibmcloud cf scale APP_NAME -i NUMBER_OF_INSTANCES
 $ ibmcloud cf events GetStartedNode
 $ ibmcloud cf logs GetStartedNode
 # setting routes 
+# Domains and routes enable traffic from the internet to flow to and from your application.A route (URL) is composed of a host prefix and a domain.
+# Configure the route by using manifest.yml
+- route: get-started-2.us-south.cf.appdomain.cloud
+$ ibmcloud cf domains [domain of your region]
+$ ibmcloud app route-map APP_NAME DOMAIN -n HOST
+$ ibmcloud app route-check HOST DOMAIN [--path PATH]
+$ibmcloud app route-create SPACE DOMAIN -n HOST [--path PATH]
+$ ibmcloud app route-unmap APP_NAME DOMAIN -n HOST --> to unmap a route
+$ ibmcloud app route-delete DOMAIN --hostname HOST [--path PATH] [-f] --> delete route
+
+# To view a list of services to which an app is bound, run the following command
+$ ibmcloud service list
+
+# To unbind a service, run the following command
+$ibmcloud service unbind APP_NAME SERVICE_NAME
+
+# You can view this variable by clicking Runtime on the web UI sidebar and clicking Environment variables, or by running the following command as shown below:
+$ ibmcloud cf env APP_NAME
 
 
+# Exercise getting started with Cloud Foundry app
+
+# create cloud foudry App but create org and space in same region
+# domain is eu-gb.cf.appdomain.cloud
+# The organization is set by default to the IBMid (email) that you used to log in. The space is set by default to dev
+# VISIT URL https://vy301-d14-nodesample.eu-gb.cf.appdomain.cloud/
+# Modify and redeploy Cloud Foundry
+$ ibmcloud login -a https://cloud.ibm.com -u passcode -p SZI8t8ToQp [one time login]
+# resource group
+$ ibmcloud target -g Default
+$ ibmcloud target --cf-api https://api.eu-gb.cf.cloud.ibm.com -o seiftarek55 -s dev
+#Upload and deploy the sample application to push the contents of the current directory as a Cloud Foundry application on IBM Cloud
+$ ibmcloud cf push vy301-xxx-nodesample
+# Note: Because you already created the application vy301-xxx-nodesample earlier by using the IBM Cloud console, 
+pushing the application from the CLI overwrites the contents of the existing application on IBM Cloud.
+# Check routes URL https://vy301-d14-nodesample.eu-gb.cf.appdomain.cloud
+# Click Resources List to open the Resources List to access your application,
+# Runtime tile is 256 MB 
+# your application consumes 256 MB of the allotted memory in this IBM Cloud organization.
+# Delete the application to clean up your organization for the next exercise
+--------------------------------------------------------------------------------
+Wrap up
+ created an IBM Cloud application with the IBM SDK for Node.js runtime environment.
+ You used the IBM Cloud CLI to modify the source code of the sample application on your local workstation 
+ redeployed the updated application from your local workstation to your IBM Cloud account by using the IBM Cloud CLI.
+# troubleshoot 
+#Each organization has a memory quota and number of services quota.
+#check that you have enough memory. If you do not have enough memory available, stop the running applications.
+
+# A developer can belong to: Many Orgs and many Spaces.
+# What information is required to log in to your IBM Cloud account with the Cloud Foundry command-line interface?
+IBM Cloud ID, password, organization, space, API endpoint
+#After a service is bound to an application, IBM Cloud restarts the application and provides the credentials of the service to the app by using:
+VCAP_SERVICES
+# Which of the following must be assigned to an Org to be granted permission to the spaces within the organization: Users
+# BoilerPlates is a template and tools that help you resolve your runtime dependencies.
+# Which statement on routing is correct Each application can have a single route and one route can serve a single application.
 
 
 
