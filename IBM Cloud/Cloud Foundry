@@ -92,6 +92,20 @@ VCAP_SERVICES
 # BoilerPlates is a template and tools that help you resolve your runtime dependencies.
 # Which statement on routing is correct Each application can have a single route and one route can serve a single application.
 
+# cloud Foundry 
+1- clone repository
+$ git clone https://github.com/IBM/node-hello-world
+2- change directory
+$ cd node-hello-world
+# create organization
+$ibmcloud account org-create <your-email-address>
+# create space 
+$ ibmcloud account space-create dev_space -o <your-email-address>
+# target Cloud Foundry API endpoint
+$ ibmcloud target --cf
+$ibmcloud cf push
+# delete deployment
+$ ibmcloud cf delete node-hello-world-example -f -r
 
 
 
