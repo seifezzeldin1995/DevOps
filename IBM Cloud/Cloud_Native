@@ -1,1 +1,41 @@
+# The Cloud Native Computing Foundation hosts critical components of the global technology infrastructure. 
+# Founded by the Linux Foundation shortly after the release of Kubernetes 1.0 in 2015, it brings together developers and experts from influential tech companies 
+to agree on guidance for developing cloud native computing technologies.
+
+# Cloud native technologies empower organizations to build and run scalable applications in modern, dynamic environments 
+such as public, private, and hybrid clouds. Containers, service meshes, microservices, immutable infrastructure, and declarative APIs exemplify this approach.
+
+# CNCF responsibilities 
+1-Stewardship of projects: Ensuring that the technologies are available to the community. 
+2-Ensuring that trademarks and logos are used appropriately. 
+3-ensuring that brand and image are maintained across implementations, especially for uniform user experience and compatibility across applications. 
+4- Fostering the growth and evolution of the ecosystem. Evaluating additional technologies to add to the ecosystem
+
+
+# Continuous Integration/Continuous Delivery
+
+- Test driven development is the practice of creating tests before writing code. This ensures that every line of code written is backed by a test.
+- The next step is to write just enough code to make the test pass or green. 
+- Finally, refactor the code base to eliminate any duplicate code and potentially add abstractions to make it more extensible.
+- Enable faster innovation, continuous delivery
+# CI/CD involves building and deploying your software so that it is always ready for production. 
+
+# Which layer of the cloud native stack is conventionally known as middleware?  Application Runtime 
+# Public and private clouds can both be hosted by external vendors. What is the main difference between these two clouds?  
+External vendors maintain hosted private clouds for one organization
+# What is the ultimate result of the app modernization benefits? Lower costs and developer productiveness
+# The app modernization effort touches which stages of application development? 
+Innovation, Agile Delivery, Cost Reduction  
+# Which of these modernization patterns involve leaving the complex parts of the application as is? Expose API 
+# Which of the TDD benefits leads to loosely coupled modules that work well with each other? 
+Developers think of features as small code blocks tested individually
+# What pattern does TDD follow? Red-green-refactor
+# What does an SRE use to reveal system downtime when making changes? 
+Error budgets  
+
+
+
+#Application modernization involves building or refactoring existing legacy applications to enable them to run on the cloud.  
+# Application modernization helps improve developer productivity and reduce costs.
+
 
