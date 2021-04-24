@@ -35,7 +35,19 @@ Error budgets
 
 
 
+------------------------------------------------------------------------------------------------
+IBM cloud  IBM Cloud is an open cloud computing platform that combines infrastructure as a service (IaaS) with platform as a service (PaaS), 
+and includes a catalog of diverse cloud services, which can be used to rapidly build and deploy business applications or infrastructure.
+- As a PaaS, it provides developers access to IBM software for integration, security, transaction, and other key functions, and software from IBM Business Partners. 
+- IBM Cloud also allows you to deploy containers, storage, and networking resources across the world-wide data centers. 
+- IBM Cloud uses Cloud Foundry, which is an open source platform as a service offering that provides a choice of clouds, frameworks, and application services.
+
+
+
+
 #Application modernization involves building or refactoring existing legacy applications to enable them to run on the cloud.  
 # Application modernization helps improve developer productivity and reduce costs.
+
+
 
 
