@@ -1,1 +1,29 @@
+Each container has its own set of namespaces[PID,USER,UTS,NS,NET,IPC]
+UTS is hostname and domain name, NS mount points, IPC is inter-process communication
+MNT - Mount and unmount directories without affecting other namespaces.
+cgroup controls limits and monitor of resources
+Container are process run on shared kernel
+Docker is tooling to manage containers, package dependencies with containers
+# docker container run -t ubuntu top
+//-t flag allocates a pseudo-TTY, which you need for the top to work correctly
+run new container and ssh the ip address of first terminal
+get container ID use #docker container ls -la
+//Using docker container exec with bash is a common pattern to inspect a docker container.
+# docker container exec -it <Cont_ID> bash
 
+------------------------------------------------------------------------------------------
+Run multiple containers, nginx server
+$ docker container run --detach --publish 8080:80 --name nginx nginx
+//The --detach flag will run this container in the background. 
+The publish flag publishes port 80 in the container (the default port for nginx), using port 8080 on our host.
+Remember that the NET namespace gives processes of the container their own network stack. 
+The --publish flag is a feature that allows us to expose networking through the container onto the host.
+
+//run a mongoDB server.
+#docker container run --detach --publish 8081:27017 --name mongo mongo:3.4
+#docker container inspect [container id]
+//more information than ls
+-----------------------------------------------------------------
+clean up with 
+# docker container stop [container id]
+#docker system prune
