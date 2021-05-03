@@ -27,3 +27,13 @@ The --publish flag is a feature that allows us to expose networking through the 
 clean up with 
 # docker container stop [container id]
 #docker system prune
+
+----------------------------------------------------------------------------------------
+Docker images
+Tar file containing a container's filesystem + metadata, for sharing and redistribution
+Push images to central registry and pull images from registry to download other images
+-create a Dockerfile which list of "instructions"
+-docker build -f Dockerfile
+Docker image layers
+union file system merge image layers into single file system for each container
+copy-on-write copies files that are edited up to top writable layers
