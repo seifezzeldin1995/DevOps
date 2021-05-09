@@ -37,3 +37,54 @@ Push images to central registry and pull images from registry to download other 
 Docker image layers
 union file system merge image layers into single file system for each container
 copy-on-write copies files that are edited up to top writable layers
+
+
+create python app
+---------------------------------------------
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def hello():
+    return "hello world!"
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')
+    
+
+
+
+/ create docker image by creating dockerfile /
+
+# vim Dockerfile
+
+FROM python:3.6.1-alpine
+RUN pip install flask
+COPY app.py /app.py
+CMD ["python","app.py"]
+
+$ docker image build -t python-hello-world .
+/ Pass in -t to name your image python-hello-world.
+$ docker image ls
+/  to verify that your image shows up in your image list.
+$ docker run -p 5001:5000 -d python-hello-world
+$ docker container logs [container id] 
+/Check the log output of the container
+$ docker push [dockerhub username]/python-hello-world
+/to push your image to the Docker Hub registry.
+
+//Update app.py by replacing the string "Hello World" with "Hello Beautiful World!" in app.py.
+//Get a list of the containers running using docker container ls.
+Each layer of the image is read-only, except for the very top layer which is created for the container. 
+The read/write container layer implements "copy-on-write" which means
+that files that are stored in lower image layers are pulled up to the read/write container layer only when edits are being made to those files. 
+Those changes are then stored in the container layer. The "copy-on-write" function is very fast, and in almost all cases, does not have a noticeable effect on performance. 
+You can inspect which files have been pulled up to the container level with the docker diff command. 
+You can also experience the sharing of layers when you start multiple containers from the same image//  
+
+$ docker container stop [container id] 
+$ docker system prune
+//It will remove any stopped containers, unused volumes and networks, and dangling images.
+$  docker image build -t [dockerhub username]/python-hello-world .
+
