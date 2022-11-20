@@ -1,2 +1,2 @@
 # DevOps
-Docker, kubernetes,Ansible,jenkins,Puppet
+Docker, kubernetes,Ansible,Jenkins,Puppet
